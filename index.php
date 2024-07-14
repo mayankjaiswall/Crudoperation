@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,10 +66,15 @@ form h2 {
     border-color: #4a90e2;
 }
 
-.checkbox-label {
+/* .checkbox-label {
     display: flex;
     align-items: center;
-}
+} */
+
+ p{
+    display: inline;
+    padding :10px
+ }
 
 .checkbox-label input {
     margin-right: 10px;
@@ -106,15 +113,15 @@ button:hover {
 </head>
 <body>
     <div class="container">
-        <form>
+        <form action="#" method="POST">
             <h2>Registration Form</h2>
             <div class="form-group">
                 <label for="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" required>
+                <input type="text" id="firstName" name="fName" required >
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" required>
+                <input type="text" id="lastName" name="lName" required>
             </div>
             <div class="form-group">
                 <label for="gender">Gender</label>
@@ -131,7 +138,7 @@ button:hover {
             </div>
             <div class="form-group">
                 <label for="phoneNumber">Phone Number</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                <input type="tel" id="phoneNumber" name="pNumber" required>
             </div>
             <div class="form-group">
                 <label for="address">Address</label>
@@ -139,12 +146,41 @@ button:hover {
             </div>
             <div class="form-group">
                 <label class="checkbox-label">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    I agree to the terms and conditions
                 </label>
             </div>
-            <button type="submit">Submit</button>
+            <input type="checkbox" id="terms" name="terms" required>
+            <p>  I agree with the terms and conditions</p>
+            <button type="submit" name="register">Submit</button>
         </form>
     </div>
 </body>
 </html>
+
+<?php
+
+if ($_POST['register'])
+{
+    $fname = $_POST['fName'];
+    $lname = $_POST['lName'];
+    $gender = $_POST['gender'];
+    $email = $_POST['email'];
+    $pNumber = $_POST['pNumber'];
+    $address = $_POST['address'];
+
+    $query = "INSERT INTO form_sumission VALUES('$fname',' $lname','$gender','$email','$pNumber','$address')";
+    
+     $data = mysqli_query($conn,$query);
+    
+     if($data)
+   {
+    echo "Data Enterd successfully!";
+   }
+   else{
+    echo "Data  Failed";
+   }
+
+
+}
+
+  
+?>
